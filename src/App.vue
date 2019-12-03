@@ -8,19 +8,13 @@
  -->
 <template>
   <div id="app">
-    2222
-    <ScreeningHall/>
+    <router-view />
   </div>
 </template>
 
 <script>
-import ScreeningHall from "./components/ScreeningHall.vue";
-
 export default {
-  name: "app",
-  components: {
-    ScreeningHall
-  }
+  name: "app"
 };
 </script>
 

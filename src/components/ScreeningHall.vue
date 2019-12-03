@@ -9,26 +9,36 @@
 
 
 <template>
-  <div class="ScreeningHall">666666666666</div>
+  <div class="ScreeningHall">
+    4567890-
+  </div>
 </template>
 <script>
 export default {
   name: "ScreeningHall",
   data() {
-    return {};
+    return {
+      templateUrl: "./templateJson/index.json", //静态文件访问，跟相对路径是publiic/index.js的相对路径
+      templateData: [] //页面结构数据
+    };
   },
-  mounted() {
+  created() {
     this.getJson();
   },
+  mounted() {},
   methods: {
     getJson() {
-      fetch("./index.json")
+      fetch("./templateJson/index.json")
         .then(res => {
           return res.json();
         })
         .then(data => {
-          alert(data)
-          console.log(data);
+          if (data) {
+            this.templateData = data;
+          }
+        })
+        .catch((err) => {
+          console.log(err)
         });
     }
   }
