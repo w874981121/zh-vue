@@ -1,23 +1,42 @@
 {
     "tap":[
         {
-            "name":"时光放映厅",
-            "title":"时光放映厅",
+            "name":"回忆厅",
+            "title":"时光",
             "id":"0",
             "index":"1",
-            "iconUrl":"//"
+            "iconUrl":"//",
+            "content":"",
+            "bg-url":"",
+            "bg-color":""
         },{
-            "name":"时光回忆厅",
-            "title":"时光回忆厅",
+            "name":"回忆厅",
+            "title":"时光",
             "id":"0",
             "index":"2",
-            "iconUrl":"//"
+            "iconUrl":"//",
+            "content":""
         },{
-            "name":"时光名人厅",
-            "title":"时光名人厅",
+            "name":"名人厅",
+            "title":"时光",
             "id":"0",
             "index":"3",
-            "iconUrl":"//"
+            "iconUrl":"//",
+            "content":""
+        },{
+            "name":"回忆厅",
+            "title":"时光",
+            "id":"0",
+            "index":"2",
+            "iconUrl":"//",
+            "content":""
+        },{
+            "name":"名人厅",
+            "title":"时光",
+            "id":"0",
+            "index":"3",
+            "iconUrl":"//",
+            "content":""
         }
     ],
     "templates":[

@@ -19,12 +19,27 @@ export default {
 </script>
 
 <style>
+html{
+  font-size: 100px;
+}
+body{
+  font-size: 0.14rem;
+  background: #000022;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+.title{
+    width: 1.3rem;
+    height: 0.24rem;
+    border: 1px solid #FFFFFF;
+    margin: 0.44rem auto 0.24rem auto;
+}
+
+
 </style>
