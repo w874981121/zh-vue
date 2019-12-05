@@ -1,12 +1,17 @@
 <template>
   <div class="CuriosityPromenade">
-    <div class="title">好奇心长廊</div>
-    <div class="content">
-      <h2>年度100问</h2>
-      <p>一个好问题，就已经是答案</p>
-      <div class="box" ref="barrage_wrap"></div>
+    <div class="title">
+      <img src="../../public/imgs/5.png" alt="好奇心长廊" />
     </div>
-    <div class="button">查看全部入围名单</div>
+    <div class="content_bg">
+      <img src="../../public/imgs/100.png" alt="年度100问" />
+      <div class="content">
+        <p>一个好问题，就已经是答案</p>
+        <div class="box" ref="barrage_wrap"></div>
+        <div class="button">查看年度100问</div>
+      </div>
+    </div>
+    
   </div>
 </template>
 <script>
@@ -40,17 +45,27 @@ export default {
 };
 </script>
 <style scoped>
+.CuriosityPromenade{
+    margin-bottom: 0.3rem;
+    overflow: hidden;
+}
+.content_bg {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
 .content {
-  width: 3.12rem;
-  height: 4rem;
-  margin: auto;
-  background: #064eba;
+  position: absolute;
+  top: 0.41rem;
+  left: 50%;
+  margin-left: -1.57rem;
+  width: 3.14rem;
   overflow: hidden;
 }
 .box {
   width: 100%;
-  height: 2.7rem;
-  background: #11196a
+  height: 2.3rem;
 }
 
 h2 {
@@ -68,7 +83,7 @@ p {
   border: 1px solid #479fc5;
   border-radius: 0.16rem;
   margin: auto;
-  margin-top: 0.3rem;
+  margin-top: 1.2rem;
   color: #ffffff;
   font-size: 0.14rem;
 }

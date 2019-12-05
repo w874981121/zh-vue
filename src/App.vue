@@ -35,11 +35,16 @@ body{
 }
 
 .title{
-    width: 1.3rem;
-    height: 0.24rem;
-    border: 1px solid #FFFFFF;
+    width: 1.32rem;
+    height: 0.25rem;
     margin: 0.44rem auto 0.24rem auto;
 }
-
+img{
+  display: block;
+  width: 100%;
+}
+p{
+  font-size: 0.12rem;
+}
 
 </style>

@@ -1,13 +1,17 @@
 
 <template>
   <div class="HallOfFame">
-    <div class="title">时光名人厅</div>
-    <div class="content">
-      <h2>年度演员</h2>
-      <p>用成为别人，成就自己</p>
-      <div class="box" ref="barrage_wrap"></div>
+    <img src="../../public/imgs/103.png" alt />
+    <div class="content_box">
+      <div class="title">
+        <img src="../../public/imgs/27.png" alt="时光名人厅" />
+      </div>
+      <div class="content">
+        <p>用成为别人，成就自己</p>
+        <div class="box" ref="barrage_wrap"></div>
+        <div class="button">查看全部入围名单</div>
+      </div>
     </div>
-    <div class="button">查看全部入围名单</div>
   </div>
 </template>
 <script>
@@ -41,35 +45,44 @@ export default {
 };
 </script>
 <style scoped>
-.content {
-  width: 3.12rem;
-  height: 4rem;
-  margin: auto;
-  background: #064eba;
+.HallOfFame {
+  margin-bottom: 0.3rem;
+  position: relative;
   overflow: hidden;
 }
+.content_box {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+.content_box .title{
+    margin-top: 0.34rem;
+}
+
+.content {
+  width: 3.12rem;
+  margin: auto;
+  padding-top: 0.36rem;
+  overflow: hidden;
+}
+
 .box {
   width: 100%;
   height: 2.7rem;
-  background: #11196a
 }
 
-h2 {
-  margin-top: 0.2rem;
-  color: #ffffff;
-}
 p {
   color: #ffffff;
 }
 .button {
-  width: 1.73rem;
+  width: 1.33rem;
   height: 0.32rem;
   line-height: 0.32rem;
   background: #101a73;
   border: 1px solid #479fc5;
   border-radius: 0.16rem;
   margin: auto;
-  margin-top: 0.3rem;
+  margin-top: 0.8rem;
   color: #ffffff;
   font-size: 0.14rem;
 }

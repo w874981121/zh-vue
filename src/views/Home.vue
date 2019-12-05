@@ -1,16 +1,27 @@
 <template>
   <div id="home">
     <!-- 头 -->
-    <div class="banner_bg"></div>
-    <van-tabs v-model="active" animated>
-      <van-tab v-for="(tem,index) in templateData.tap" :key="index">
-        <div slot="title" class="title_name">
-          {{tem.title}}
-          <br />
-          {{ tem.name }}
-        </div>
-      </van-tab>
-    </van-tabs>
+    <div class="banner_bg">
+      <img src="../../public/imgs/1.jpg" alt />
+    </div>
+    <!--  -->
+    <div id="navtab">
+      <van-tabs
+        v-model="active"
+        animated
+        title-inactive-color="#5568da"
+        title-active-color="#ffffff"
+      >
+        <van-tab v-for="(tem,index) in templateData.tap" :key="index">
+          <div slot="title" class="title_name">
+            {{tem.title}}
+            <br />
+            {{ tem.name }}
+          </div>
+        </van-tab>
+      </van-tabs>
+    </div>
+    <!--  -->
     <van-index-bar
       :index-list="indexList"
       :sticky-offset-top="2"
@@ -20,7 +31,7 @@
       <van-index-anchor index="1"></van-index-anchor>
       <RecollectionHall />
       <div class="red_envelopes">
-        <h1>红包活动</h1>
+        <img src="../../public/imgs/12.png" alt />
         <a href>立即领取&nbsp;&nbsp;&nbsp;&nbsp;></a>
       </div>
 
@@ -47,7 +58,7 @@
       <YanXuanHall />
     </van-index-bar>
 
-    <p>商业合作伙伴</p>
+    <h3 style="color:#c4d8ea">商业合作伙伴</h3>
 
     <div class="cooperation">
       <ul class="ul">
@@ -66,7 +77,9 @@
       </ul>
     </div>
 
-    <div>知乎LOGO</div>
+    <div class="logo">
+      <img src="../../public/imgs/41.png" alt />
+    </div>
   </div>
 </template>
 
@@ -85,7 +98,62 @@ export default {
   data() {
     return {
       indexList: [1, 2, 3, 4, 5, 6, 7, 8],
-      templateData: {},
+      templateData: {
+        tap: [
+          {
+            name: "回忆厅",
+            title: "时光",
+            id: "0",
+            index: "1",
+            iconUrl: "//",
+            content: "",
+            "bg-url": "",
+            "bg-color": ""
+          },
+          {
+            name: "回忆厅",
+            title: "时光",
+            id: "0",
+            index: "2",
+            iconUrl: "//",
+            content: ""
+          },
+          {
+            name: "名人厅",
+            title: "时光",
+            id: "0",
+            index: "3",
+            iconUrl: "//",
+            content: ""
+          },
+          {
+            name: "回忆厅",
+            title: "时光",
+            id: "0",
+            index: "2",
+            iconUrl: "//",
+            content: ""
+          },
+          {
+            name: "名人厅",
+            title: "时光",
+            id: "0",
+            index: "3",
+            iconUrl: "//",
+            content: ""
+          }
+        ],
+        templates: [
+          {
+            id: "",
+            name: "",
+            title: "时光放映厅",
+            backgroundImgUrl: "",
+            imgUrl: "",
+            jumpUrl: ""
+          }
+        ]
+      },
       active: 1
     };
   },
@@ -132,34 +200,50 @@ export default {
 </script>
 
 <style>
-.van-tabs__wrap {
-  height: 0.58rem !important;
+#navtab .van-tabs__wrap {
+  height: 0.66rem !important;
 }
-.van-tabs__line {
-  width: 0.71rem !important;
-  height: 0.5rem !important;
+#navtab .van-tabs--line {
+  margin-top: -0.1rem !important;
+}
+#navtab .van-tabs__line {
+  width: 0.81rem !important;
+  height: 0.56rem !important;
   background-color: rgba(136, 144, 196, 0.5) !important;
+  background: url("../../public/imgs/3.png") no-repeat !important;
+  background-size: 100% 100% !important;
   border-radius: 0px !important;
   top: 0;
 }
-.van-tabs__nav--line {
-  height: 0.58rem;
+#navtab .van-tabs__nav--line {
+  height: 0.66rem !important;
   background: #171f8e !important;
-  background-image: linear-gradient(#090b34, #15218d) !important;
   padding-bottom: 0px !important;
+  background: url("../../public/imgs/4.jpg") no-repeat !important;
+  background-position: 0 0.08rem !important;
+  background-size: 100% 0.58rem !important;
 }
-
+.van-tab--active {
+  font-size: 0.16rem !important;
+}
 .van-hairline--top-bottom::after {
   border: 0px !important;
   width: 3.75rem;
   display: block;
-  height: 0.02rem;
-  background-image: linear-gradient(to right, #d69beb, #8fbcdd);
+  height: 0;
+  /* background-image: linear-gradient(to right, #d69beb, #8fbcdd); */
   bottom: 0 !important;
   left: 0 !important;
   top: auto !important;
   right: auto !important;
   transform: none !important;
+}
+
+.van-index-anchor {
+  line-height: 0 !important;
+  font-size: 0 !important;
+  padding: 0 !important;
+  height: 1px;
 }
 
 .colored_thread {
@@ -172,53 +256,47 @@ export default {
   line-height: 0.14rem;
   margin-top: 0.22rem;
   font-size: 0.1rem;
-  color: #ffffff;
 }
 .banner_bg {
   width: 100%;
-  height: 2rem;
-  background: #000056;
+  height: auto;
 }
 
 .red_envelopes {
   width: 3.12rem;
   height: 1.3rem;
-  margin: auto;
-  margin-top: 0.3rem;
+  margin: 0.3rem auto;
   background: #0b2f85;
   overflow: hidden;
   border-radius: 0.1rem;
-}
-.red_envelopes h1 {
-  margin-top: 0.3rem;
-  color: #ffffff;
-  font-size: 0.2rem;
+  position: relative;
 }
 .red_envelopes a {
+  position: absolute;
   display: block;
-  color: #8a0022;
-  background: #e39b73;
+  color: #ffffff;
+  background: #71295e;
   width: 1.15rem;
   height: 0.25rem;
   line-height: 0.25rem;
   border-radius: 0.13rem;
-  margin: auto;
-  margin-top: 0.23rem;
+  top: 0.9rem;
+  left: 50%;
+  margin-left: -0.575rem;
 }
 .ad {
   width: 3.12rem;
   height: 1.3rem;
   line-height: 1.3rem;
-  margin: auto;
-  margin-top: 1rem;
+  margin: 0.3rem auto;
   background: #0b2f85;
   overflow: hidden;
   border-radius: 0.1rem;
   color: #ffffff;
 }
-.cooperation{
+.cooperation {
   width: 3.36rem;
-  overflow:hidden;
+  overflow: hidden;
   margin: auto;
 }
 
@@ -238,5 +316,9 @@ li {
   background: #8fbcdd;
   float: left;
   margin-bottom: 0.1rem;
+}
+.logo {
+  width: 0.61rem;
+  margin: 0.5rem auto;
 }
 </style>
