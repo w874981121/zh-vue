@@ -4,22 +4,16 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'home',
     component: Home
-  },
-  {
-    path: '/bs',
-    name: 'Bs',
-    component: () => import('../views/Bs.vue')
   }
 ]
 
 const router = new VueRouter({
   // mode:"history",
-  mode:"hash",
+  mode: "hash",
   routes
 })
 

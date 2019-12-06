@@ -1,14 +1,13 @@
 <template>
   <div class="AssemblyHall">
     <div class="title">
-      <img src="../../public/imgs/38.png" alt="时光议事厅" />
+      <img :src="assemblyhall.title_url" alt="时光议事厅" />
     </div>
-
     <div class="content_bg">
-      <img src="../../public/imgs/106.png" alt="我的知乎2019" />
+      <img :src="assemblyhall.bg_url" alt="年度圆桌" />
       <div class="content">
-        <p>邀请时间做客，一起聊聊改变</p>
-        <div class="button">进入圆桌参与讨论</div>
+        <p>{{assemblyhall.content_text}}</p>
+        <a class="button" :href="assemblyhall.jump_url">{{assemblyhall.button_text}}</a>
       </div>
     </div>
   </div>
@@ -16,7 +15,7 @@
 <script>
 export default {
   name: "AssemblyHall",
-  props: ["AssemblyHall"],
+  props: ["assemblyhall"],
   data() {
     return {};
   },
@@ -56,6 +55,7 @@ p {
   color: #ffffff;
 }
 .button {
+  display: block;
   width: 1.73rem;
   height: 0.32rem;
   line-height: 0.32rem;

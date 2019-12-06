@@ -2,29 +2,13 @@
 <template>
   <div class="PartyHall">
     <div class="title">
-      <img src="../../public/imgs/13.png" alt="时光派队厅" />
+      <img :src="partyhall.title_url" alt="时光派队厅" />
     </div>
-    <div class="content">
-      <h2>直播我的2019</h2>
+    <div class="content" v-for="(tem,index) in partyhall.banner_array" :key="index">
+      <h2>{{tem.banner_title}}</h2>
       <div class="banner">
-        <p>直播我的2019banner</p>
-        <div class="button">活动点击按钮&nbsp;&nbsp;&nbsp;&nbsp;></div>
-      </div>
-    </div>
-
-    <div class="content">
-      <h2>直播我的2019</h2>
-      <div class="banner">
-        <p>直播我的2019banner</p>
-        <div class="button">活动点击按钮&nbsp;&nbsp;&nbsp;&nbsp;></div>
-      </div>
-    </div>
-
-    <div class="content">
-      <h2>直播我的2019</h2>
-      <div class="banner">
-        <p>直播我的2019banner</p>
-        <div class="button">活动点击按钮&nbsp;&nbsp;&nbsp;&nbsp;></div>
+        <img :src="tem.banner_url" alt />
+        <a class="button" :href="tem.jump_url">{{tem.button_text}}</a>
       </div>
     </div>
   </div>
@@ -32,7 +16,7 @@
 <script>
 export default {
   name: "PartyHall",
-  props: ["PartyHall"],
+  props: ["partyhall"],
   data() {
     return {};
   },
@@ -75,24 +59,28 @@ h2 {
 
 .banner {
   width: 100%;
-  height: 1.3rem;
+  min-height: 1rem;
   margin-top: 0.04rem;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #7a8dae;
   overflow: hidden;
+  position: relative;
 }
-p {
-  margin-top: 0.3rem;
+.banner img {
+  border-radius: 8px;
 }
 .button {
+  position: absolute;
+  display: block;
   width: 1.43rem;
   height: 0.26rem;
   line-height: 0.26rem;
   background: #0767ce;
   border-radius: 0.16rem;
-  margin: auto;
-  margin-top: 0.3rem;
   color: #ffffff;
   font-size: 0.14rem;
+  bottom: 0.2rem;
+  left: 50%;
+  margin-left: -0.715rem;
 }
 </style>

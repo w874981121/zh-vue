@@ -1,13 +1,13 @@
 
 <template>
   <div class="SelectionHall">
-    <img src="../../public/imgs/102.png" alt />
+    <img :src="selectionhall.bg_url" alt />
     <div class="content_box">
       <div class="title">
-        <img src="../../public/imgs/20.png" alt="时光甄选厅" />
+        <img :src="selectionhall.title_url" alt="时光甄选厅" />
       </div>
       <div class="content" id="tabsbox">
-        <p>善于发现美好，生活才会美好</p>
+        <p>{{selectionhall.content_text}}</p>
         <van-tabs
           v-model="active"
           animated
@@ -15,41 +15,24 @@
           title-inactive-color="#5568da"
           title-active-color="#ffffff"
         >
-          <van-tab v-for="(tem,index) in temb" :key="index">
-            <div slot="title" class="title_name">{{ tem.name }}</div>
+          <van-tab v-for="(tem,index) in selectionhall.recommend_array" :key="index">
+            <div slot="title" class="title_name">{{ tem.tabs_name }}</div>
             <div class="box_tab">
-              <div class="box1">
+              <div :class="i==1?'box2':'box1'" v-for="(obj,i) in tem.arrays" :key="i">
                 <div class="img">
-                    <img src="../../public/imgs/22.png" alt="">
+                  <img :src="obj.img_url" alt />
                 </div>
                 <div class="name">
-                  No.2
-                  <br />流浪地球
+                  No.{{obj.ranking}}
+                  <br />
+                  {{obj.name}}
                 </div>
-                <div class="text">知乎评分：8.4</div>
-              </div>
-              <div class="box2">
-                <div class="img">
-                    <img src="../../public/imgs/22.png" alt="">
-                </div>
-                <div class="name">
-                  No.2
-                  <br />何以为家
-                </div>
-                <div class="text">知乎评分：8.1</div>
-              </div>
-              <div class="box1">
-                <div class="img"></div>
-                <div class="name">
-                  No.3
-                  <br />小丑
-                </div>
-                <div class="text">知乎评分：8.2</div>
+                <div class="text">知乎评分：{{obj.score}}</div>
               </div>
             </div>
           </van-tab>
         </van-tabs>
-        <div class="button">查看全部榜单</div>
+        <a class="button" :href="selectionhall.jump_url">{{selectionhall.button_text}}</a>
       </div>
     </div>
   </div>
@@ -57,9 +40,10 @@
 <script>
 export default {
   name: "SelectionHall",
-  props: ["SelectionHall"],
+  props: ["selectionhall"],
   data() {
     return {
+      active: 0, //tab选项
       temb: [
         { name: "高分电影榜" },
         { name: "数码好物榜" },
@@ -98,6 +82,7 @@ p {
   color: #ffffff;
 }
 .button {
+  display: block;
   width: 1.73rem;
   height: 0.32rem;
   line-height: 0.32rem;

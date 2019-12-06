@@ -8,15 +8,17 @@
  -->
 <template>
   <div class="ScreeningHall">
-    <img src="../../public/imgs/101.png" alt />
+    <img :src="screeninghall.bg_url" alt />
     <div class="content_box">
       <div class="title">
-        <img src="../../public/imgs/16.png" alt="时光放映厅" />
+        <img :src="screeninghall.title_url" alt="时光放映厅" />
       </div>
       <div class="content">
-        <p>2019该如何回顾这一年</p>
-        <div class="video"></div>
-        <div class="button">进入&nbsp;2019&nbsp;大事记专区</div>
+        <p>{{screeninghall.content_text}}</p>
+        <div class="video">
+          <video :src="screeninghall.video_url"></video>
+        </div>
+        <a class="button" :href="screeninghall.jump_url">{{screeninghall.button_text}}</a>
       </div>
     </div>
   </div>
@@ -24,7 +26,7 @@
 <script>
 export default {
   name: "ScreeningHall",
-  props: ["ScreeningHall"],
+  props: ["screeninghall"],
   data() {
     return {};
   },
@@ -62,6 +64,7 @@ p {
   margin: 0.08rem 0;
 }
 .button {
+  display: block;
   width: 1.73rem;
   height: 0.32rem;
   line-height: 0.32rem;
@@ -78,6 +81,12 @@ p {
   width: 100%;
   height: 1.8rem;
   overflow: hidden;
-  margin-top: 0.16rem;
+  margin-top: 0.19rem;
+  background: #cccccc;
+}
+video {
+  display: block;
+  width: 100%;
+  height: 1.8rem;
 }
 </style>

@@ -1,19 +1,20 @@
 <template>
   <div id="home">
-    <!-- 头 -->
+    <!-- 头部固定 -->
     <div class="banner_bg">
       <img src="../../public/imgs/1.jpg" alt />
     </div>
-    <!--  -->
-    <div id="navtab">
+    <!-- 导航不可更改位置 -->
+    <div id="navtab" :class="{fixed_nav:navBarFixed}" ref="navtab">
       <van-tabs
         v-model="active"
         animated
         title-inactive-color="#5568da"
         title-active-color="#ffffff"
+        @click="tabNavOnClick"
       >
-        <van-tab v-for="(tem,index) in templateData.tap" :key="index">
-          <div slot="title" class="title_name">
+        <van-tab v-for="(tem,index) in navData" :key="index" :name="tem.index">
+          <div slot="title" class="title_name" v-if="tem.tab_state">
             {{tem.title}}
             <br />
             {{ tem.name }}
@@ -21,41 +22,57 @@
         </van-tab>
       </van-tabs>
     </div>
-    <!--  -->
+    <!-- 锚点组件区域 内部位置根据数组位置排列 -->
     <van-index-bar
       :index-list="indexList"
-      :sticky-offset-top="2"
+      :sticky-offset-top="10"
+      :activeindex="indexSelect"
       :sticky="false"
-      :activeindex="active -1 + 2"
+      @handover="handoverFn"
     >
-      <van-index-anchor index="1"></van-index-anchor>
-      <RecollectionHall />
-      <div class="red_envelopes">
-        <img src="../../public/imgs/12.png" alt />
-        <a href>立即领取&nbsp;&nbsp;&nbsp;&nbsp;></a>
+      <div v-for="(data,i) in templateData.templates" :key="i">
+        <van-index-anchor v-if="data.anchor_point_state" :index="data.index"></van-index-anchor>
+        <!-- 时光回忆厅 -->
+        <RecollectionHall
+          v-if="templateShowState('RecollectionHall',data.id,data.show)"
+          :recollectionhall="data"
+        />
+        <!-- 红包 -->
+        <div class="red_envelopes" v-if="templateShowState('RedEnvelopes',data.id,data.show)">
+          <img src="../../public/imgs/12.png" alt />
+          <a :href="data.jump_url">{{data.button_text}}</a>
+        </div>
+        <!--  -->
+        <HallOfFame v-if="templateShowState('HallOfFame',data.id,data.show)" :halloffame="data" />
+        <!-- 广告 -->
+        <div class="ad" v-if="templateShowState('AD',data.id,data.show)" :ad="data">
+          <img :src="data.ad_img_url" alt />
+        </div>
+        <!--  -->
+        <AssemblyHall
+          v-if="templateShowState('AssemblyHall',data.id,data.show)"
+          :assemblyhall="data"
+        />
+        <!--  -->
+        <PartyHall v-if="templateShowState('PartyHall',data.id,data.show)" :partyhall="data" />
+        <!--  -->
+        <SelectionHall
+          v-if="templateShowState('SelectionHall',data.id,data.show)"
+          :selectionhall="data"
+        />
+        <!--  -->
+        <CuriosityPromenade
+          v-if="templateShowState('CuriosityPromenade',data.id,data.show)"
+          :curiositypromenade="data"
+        />
+        <!--  -->
+        <ScreeningHall
+          v-if="templateShowState('ScreeningHall',data.id,data.show)"
+          :screeninghall="data"
+        />
+        <!--  -->
+        <YanXuanHall v-if="templateShowState('YanXuanHall',data.id,data.show)" :yanxuanhall="data" />
       </div>
-
-      <van-index-anchor index="2"></van-index-anchor>
-      <HallOfFame v-if="templateDataState" :halloffame="templateData.tap" />
-      <div class="ad">广告展示</div>
-
-      <van-index-anchor index="3"></van-index-anchor>
-      <AssemblyHall />
-
-      <van-index-anchor index="4"></van-index-anchor>
-      <PartyHall />
-
-      <van-index-anchor index="5"></van-index-anchor>
-      <SelectionHall />
-
-      <van-index-anchor index="6"></van-index-anchor>
-      <CuriosityPromenade v-if="templateDataState" :curiositypromenade="templateData.tap" />
-
-      <van-index-anchor index="7"></van-index-anchor>
-      <ScreeningHall />
-
-      <van-index-anchor index="8"></van-index-anchor>
-      <YanXuanHall />
     </van-index-bar>
 
     <h3 style="color:#c4d8ea">商业合作伙伴</h3>
@@ -93,97 +110,78 @@ import CuriosityPromenade from "../components/CuriosityPromenade"; //好奇心�
 import ScreeningHall from "../components/ScreeningHall"; //放映厅
 import YanXuanHall from "../components/YanXuanHall"; //盐选
 
+// 页面配置文件
+import templateData from "../../public/templateJson/index";
+
 export default {
   name: "home",
   data() {
     return {
-      indexList: [1, 2, 3, 4, 5, 6, 7, 8],
-      templateData: {
-        tap: [
-          {
-            name: "回忆厅",
-            title: "时光",
-            id: "0",
-            index: "1",
-            iconUrl: "//",
-            content: "",
-            "bg-url": "",
-            "bg-color": ""
-          },
-          {
-            name: "回忆厅",
-            title: "时光",
-            id: "0",
-            index: "2",
-            iconUrl: "//",
-            content: ""
-          },
-          {
-            name: "名人厅",
-            title: "时光",
-            id: "0",
-            index: "3",
-            iconUrl: "//",
-            content: ""
-          },
-          {
-            name: "回忆厅",
-            title: "时光",
-            id: "0",
-            index: "2",
-            iconUrl: "//",
-            content: ""
-          },
-          {
-            name: "名人厅",
-            title: "时光",
-            id: "0",
-            index: "3",
-            iconUrl: "//",
-            content: ""
-          }
-        ],
-        templates: [
-          {
-            id: "",
-            name: "",
-            title: "时光放映厅",
-            backgroundImgUrl: "",
-            imgUrl: "",
-            jumpUrl: ""
-          }
-        ]
-      },
-      active: 1
+      clickState: true,
+      top: null,
+      indexSelect: null,
+      templateData: templateData,
+      active: null,
+      navBarFixed: false
     };
   },
-  created() {
-    this.getJson();
-  },
+  created() {},
   computed: {
     templateDataState() {
-      return this.templateData && this.templateData.tap;
+      return this.templateData && this.templateData.templates;
+    },
+    navData() {
+      return templateData.templates.filter(item => {
+        return item.tab_state;
+      });
+    },
+    indexList() {
+      return this.navData.map(obj => {
+        return obj.index;
+      });
     }
   },
+  watch: {},
   mounted() {
     this.$nextTick(() => {
-      console.log(this.$refs.bar);
+      setTimeout(() => {
+        this.top = this.getElementToPageTop(this.$refs.navtab);
+      }, 0);
+      window.addEventListener("scroll", this.watchScroll);
     });
   },
   methods: {
-    getJson() {
-      fetch("./templateJson/index.json")
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          if (data) {
-            this.templateData = data;
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    templateShowState(name, dyn, state) {
+      return name === dyn && state;
+    },
+    tabNavOnClick(name) {
+      this.clickState = false;
+      this.indexSelect = name;
+      setTimeout(() => {
+        this.clickState = true;
+      }, 1000);
+    },
+    handoverFn(index) {
+      if (this.clickState) {
+        this.active = index;
+      }
+    },
+    getElementToPageTop(el) {
+      if (el.parentElement) {
+        return this.getElementToPageTop(el.parentElement) + el.offsetTop;
+      }
+      return el.offsetTop;
+    },
+    watchScroll() {
+      var scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      if (scrollTop > this.top) {
+        this.navBarFixed = true;
+      } else {
+        this.navBarFixed = false;
+      }
     }
   },
   components: {
@@ -200,6 +198,9 @@ export default {
 </script>
 
 <style>
+#navtab {
+  z-index: 999;
+}
 #navtab .van-tabs__wrap {
   height: 0.66rem !important;
 }
@@ -231,7 +232,6 @@ export default {
   width: 3.75rem;
   display: block;
   height: 0;
-  /* background-image: linear-gradient(to right, #d69beb, #8fbcdd); */
   bottom: 0 !important;
   left: 0 !important;
   top: auto !important;
@@ -244,6 +244,12 @@ export default {
   font-size: 0 !important;
   padding: 0 !important;
   height: 1px;
+}
+
+.fixed_nav {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .colored_thread {
@@ -293,6 +299,10 @@ export default {
   overflow: hidden;
   border-radius: 0.1rem;
   color: #ffffff;
+}
+
+.ad img {
+  border-radius: 0.08rem;
 }
 .cooperation {
   width: 3.36rem;

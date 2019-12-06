@@ -1,15 +1,15 @@
 
 <template>
   <div class="HallOfFame">
-    <img src="../../public/imgs/103.png" alt />
+    <img :src="halloffame.bg_url" alt />
     <div class="content_box">
       <div class="title">
-        <img src="../../public/imgs/27.png" alt="时光名人厅" />
+        <img :src="halloffame.title_url" alt="时光名人厅" />
       </div>
       <div class="content">
-        <p>用成为别人，成就自己</p>
+        <p>{{halloffame.content_text}}</p>
         <div class="box" ref="barrage_wrap"></div>
-        <div class="button">查看全部入围名单</div>
+        <a class="button" :href="halloffame.jump_url">{{halloffame.button_text}}</a>
       </div>
     </div>
   </div>
@@ -29,10 +29,10 @@ export default {
   methods: {
     // 递归播放
     forData() {
-      var array = this.halloffame; //原始数据
+      var array = this.halloffame.problems; //原始数据
       var value = array[Math.round(Math.random() * (array.length - 1))]; //随机抽取一个值
       this.send({
-        text: value.name,
+        text: value,
         color: "red",
         speed: 1,
         classname: "style1"
@@ -55,8 +55,8 @@ export default {
   position: absolute;
   top: 0;
 }
-.content_box .title{
-    margin-top: 0.34rem;
+.content_box .title {
+  margin-top: 0.34rem;
 }
 
 .content {
@@ -75,6 +75,7 @@ p {
   color: #ffffff;
 }
 .button {
+  display: block;
   width: 1.33rem;
   height: 0.32rem;
   line-height: 0.32rem;

@@ -2,32 +2,29 @@
 <template>
   <div class="YanXuanHall">
     <div class="title">
-      <img src="../../public/imgs/30.png" alt="时光盐选厅" />
+      <img :src="yanxuanhall.title_url" alt="时光盐选厅" />
     </div>
     <div class="content_box">
-      <img src="../../public/imgs/104.png" alt="时光盐选厅" />
+      <img :src="yanxuanhall.bg_url" alt="时光盐选厅" />
       <div class="content">
-        <p>有些经历，自成阅历</p>
+        <p>{{yanxuanhall.content_text}}</p>
         <div class="box">
-          <div class="img">1</div>
-          <div class="img">2</div>
-          <div class="img">3</div>
-          <div class="img">4</div>
-          <div class="img">5</div>
-          <div class="img">6</div>
+          <div class="img" v-for="(tem,i) in yanxuanhall.list" :key="i">
+            <img :src="tem" alt />
+          </div>
         </div>
       </div>
     </div>
     <div class="front_img">
-      <img src="../../public/imgs/32.png" alt />
+      <img :src="yanxuanhall.front_img" alt />
     </div>
-    <div class="button">查看全部盐选内容</div>
+    <a class="button" :href="yanxuanhall.jump_url">{{yanxuanhall.button_text}}</a>
   </div>
 </template>
 <script>
 export default {
   name: "YanXuanHall",
-  props: ["YanXuanHall"],
+  props: ["yanxuanhall"],
   data() {
     return {};
   },
@@ -70,6 +67,7 @@ p {
   color: #ffffff;
 }
 .button {
+  display: block;
   width: 1.5rem;
   height: 0.32rem;
   position: absolute;
@@ -93,5 +91,8 @@ p {
   float: left;
   color: #ffffff;
   font-size: 0.3rem;
+}
+.img img {
+  height: 1.36rem;
 }
 </style>

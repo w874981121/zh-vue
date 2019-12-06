@@ -1,17 +1,16 @@
 <template>
   <div class="CuriosityPromenade">
     <div class="title">
-      <img src="../../public/imgs/5.png" alt="好奇心长廊" />
+      <img :src="curiositypromenade.title_url" alt="好奇心长廊" />
     </div>
     <div class="content_bg">
-      <img src="../../public/imgs/100.png" alt="年度100问" />
+      <img :src="curiositypromenade.bg_url" alt="年度100问" />
       <div class="content">
-        <p>一个好问题，就已经是答案</p>
+        <p>{{curiositypromenade.content_text}}</p>
         <div class="box" ref="barrage_wrap"></div>
-        <div class="button">查看年度100问</div>
+        <a class="button" :href="curiositypromenade.jump_url">{{curiositypromenade.button_text}}</a>
       </div>
     </div>
-    
   </div>
 </template>
 <script>
@@ -29,10 +28,10 @@ export default {
   methods: {
     // 递归播放
     forData() {
-      var array = this.curiositypromenade; //原始数据
+      var array = this.curiositypromenade.problems; //原始数据
       var value = array[Math.round(Math.random() * (array.length - 1))]; //随机抽取一个值
       this.send({
-        text: value.name,
+        text: value,
         color: "red",
         speed: 1,
         classname: "style1"
@@ -45,9 +44,9 @@ export default {
 };
 </script>
 <style scoped>
-.CuriosityPromenade{
-    margin-bottom: 0.3rem;
-    overflow: hidden;
+.CuriosityPromenade {
+  margin-bottom: 0.3rem;
+  overflow: hidden;
 }
 .content_bg {
   width: 100%;
@@ -76,6 +75,7 @@ p {
   color: #ffffff;
 }
 .button {
+  display: block;
   width: 1.73rem;
   height: 0.32rem;
   line-height: 0.32rem;
