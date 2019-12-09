@@ -39,14 +39,16 @@
         />
         <!-- 红包 -->
         <div class="red_envelopes" v-if="templateShowState('RedEnvelopes',data.id,data.show)">
-          <img src="../../public/imgs/12.png" alt />
+          <img :src="data.img_url" alt />
           <a :href="data.jump_url">{{data.button_text}}</a>
         </div>
         <!--  -->
         <HallOfFame v-if="templateShowState('HallOfFame',data.id,data.show)" :halloffame="data" />
         <!-- 广告 -->
-        <div class="ad" v-if="templateShowState('AD',data.id,data.show)" :ad="data">
-          <img :src="data.ad_img_url" alt />
+        <div class="ad" v-if="templateShowState('AD',data.id,data.show)">
+          <a :href="data.jump_url">
+            <img :src="data.ad_img_url" alt />
+          </a>
         </div>
         <!--  -->
         <AssemblyHall
@@ -199,7 +201,8 @@ export default {
 
 <style>
 #navtab {
-  z-index: 999;
+  z-index: 9999;
+  width: 100%;
 }
 #navtab .van-tabs__wrap {
   height: 0.66rem !important;

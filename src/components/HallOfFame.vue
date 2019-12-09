@@ -19,9 +19,21 @@ export default {
   name: "HallOfFame",
   props: ["halloffame"],
   data() {
-    return {};
+    return {
+      i: 0,
+      htmlShowState: true
+    };
   },
-  created() {},
+  created() {
+    document.addEventListener("webkitvisibilitychange", function() {
+      var tag = document.hidden || document.webkitHidden;
+      if (tag) {
+        this.htmlShowState = false;
+      } else {
+        this.htmlShowState = true;
+      }
+    });
+  },
   mounted() {
     this.send = this.$start(this.$refs.barrage_wrap);
     this.forData();
@@ -29,17 +41,26 @@ export default {
   methods: {
     // 递归播放
     forData() {
+      if (!this.htmlShowState) return;
       var array = this.halloffame.problems; //原始数据
-      var value = array[Math.round(Math.random() * (array.length - 1))]; //随机抽取一个值
+      //   var value = array[Math.round(Math.random() * (array.length - 1))]; //随机抽取一个值
+      var value = array[this.i];   //顺序循环
+      if (this.i === array.length - 1) {
+        this.i = 0;
+      } else {
+        this.i++;
+      }
       this.send({
-        text: value,
-        color: "red",
+        imgUrl: value.img_url,
+        name: value.name,
+        text: value.text,
         speed: 1,
-        classname: "style1"
+        colorname: value.gender === "man" ? "color1" : "color2",
+        classname: "halloffamebarrage"
       });
       setTimeout(() => {
         this.forData();
-      }, 1000);
+      }, 2000);
     }
   }
 };

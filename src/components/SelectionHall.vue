@@ -19,15 +19,17 @@
             <div slot="title" class="title_name">{{ tem.tabs_name }}</div>
             <div class="box_tab">
               <div :class="i==1?'box2':'box1'" v-for="(obj,i) in tem.arrays" :key="i">
-                <div class="img">
-                  <img :src="obj.img_url" alt />
-                </div>
-                <div class="name">
-                  No.{{obj.ranking}}
-                  <br />
-                  {{obj.name}}
-                </div>
-                <div class="text">知乎评分：{{obj.score}}</div>
+                <a :href="obj.jump_url">
+                  <div class="img">
+                    <img :src="obj.img_url" alt />
+                  </div>
+                  <div class="name">
+                    No.{{obj.ranking}}
+                    <br />
+                    {{obj.name}}
+                  </div>
+                  <div class="text">知乎评分：{{obj.score}}</div>
+                </a>
               </div>
             </div>
           </van-tab>

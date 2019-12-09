@@ -12,8 +12,25 @@ export default {
         "content_text": "有些经历，自成阅历",
         "button_text": "查看全部盐选内容",
         "front_img": "./imgs/32.png",
-        "list": ["//", "//", "//", "//", "//", "//"],
-        "jump_url": "#",
+        "list": [{
+            "img_url": "./imgs/2.png",
+            "jump_url": "#",
+        }, {
+            "img_url": "./imgs/2.png",
+            "jump_url": "#",
+        }, {
+            "img_url": "./imgs/2.png",
+            "jump_url": "#",
+        }, {
+            "img_url": "./imgs/2.png",
+            "jump_url": "#",
+        }, {
+            "img_url": "./imgs/2.png",
+            "jump_url": "#",
+        }, {
+            "img_url": "./imgs/2.png",
+            "jump_url": "#",
+        }, ],
     }, {
         "name": "甄选厅",
         "title": "时光",
@@ -32,17 +49,20 @@ export default {
                 "name": "流浪地球",
                 "ranking": "2",
                 "img_url": "./imgs/22.png",
-                "score": "8.3"
+                "score": "8.3",
+                "jump_url": "#",
             }, {
                 "name": "何以为家",
                 "ranking": "1",
                 "img_url": "./imgs/22.png",
-                "score": "8.4"
+                "score": "8.4",
+                "jump_url": "#",
             }, {
                 "name": "小丑",
                 "ranking": "3",
                 "img_url": "./imgs/22.png",
-                "score": "8.2"
+                "score": "8.2",
+                "jump_url": "#",
             }]
         }, {
             "tabs_name": "数码好物榜",
@@ -50,17 +70,20 @@ export default {
                 "name": "流浪地球",
                 "ranking": "2",
                 "img_url": "./imgs/22.png",
-                "score": "8.3"
+                "score": "8.3",
+                "jump_url": "#",
             }, {
                 "name": "何以为家",
                 "ranking": "1",
                 "img_url": "./imgs/22.png",
-                "score": "8.4"
+                "score": "8.4",
+                "jump_url": "#",
             }, {
                 "name": "小丑",
                 "ranking": "3",
                 "img_url": "./imgs/22.png",
-                "score": "8.2"
+                "score": "8.2",
+                "jump_url": "#",
             }]
         }, {
             "tabs_name": "时尚好物榜",
@@ -68,17 +91,20 @@ export default {
                 "name": "流浪地球",
                 "ranking": "2",
                 "img_url": "./imgs/22.png",
-                "score": "8.3"
+                "score": "8.3",
+                "jump_url": "#",
             }, {
                 "name": "何以为家",
                 "ranking": "1",
                 "img_url": "./imgs/22.png",
-                "score": "8.4"
+                "score": "8.4",
+                "jump_url": "#",
             }, {
                 "name": "小丑",
                 "ranking": "3",
                 "img_url": "./imgs/22.png",
-                "score": "8.2"
+                "score": "8.2",
+                "jump_url": "#",
             }]
         }],
         "jump_url": "#",
@@ -90,6 +116,7 @@ export default {
         "show": true,
         "anchor_point_state": false,
         "button_text": "立即领取",
+        "img_url": "./imgs/12.png",
         "jump_url": "#",
     }, {
         "name": "放映厅",
@@ -156,7 +183,42 @@ export default {
         "show": true,
         "anchor_point_state": true,
         "content_text": "用成为别人，成就自己",
-        "problems": ["黄渤", "彭于晏", "小绵羊", "杨幂"],
+        "problems": [{
+            "name": "黄渤",
+            "text":"入围最佳男主角",
+            "img_url":"./imgs/6.png",
+            "gender":"man"
+        },{
+            "name": "彭于晏",
+            "text":"入围最佳男主角",
+            "img_url":"./imgs/6.png",
+            "gender":"man"
+        },{
+            "name": "杨幂",
+            "text":"入围最佳女主角",
+            "img_url":"./imgs/6.png",
+            "gender":"woman"  
+        },{
+            "name": "迪丽热巴",
+            "text":"入围最佳女主角",
+            "img_url":"./imgs/6.png",
+            "gender":"woman"
+        },{
+            "name": "杨幂",
+            "text":"入围最佳女主角",
+            "img_url":"./imgs/6.png",
+            "gender":"woman"
+        },{
+            "name": "小绵羊",
+            "text":"入围最佳男主角",
+            "img_url":"./imgs/6.png",
+            "gender":"man"
+        },{
+            "name": "彭于晏",
+            "text":"入围最佳男主角",
+            "img_url":"./imgs/6.png",
+            "gender":"man"
+        }],
         "button_text": "查看全部入围名单",
         "jump_url": "#",
         "iconUrl": "//",
@@ -180,7 +242,7 @@ export default {
         "show": true,
         "anchor_point_state": true,
         "content_text": "一个好问题，就已经是答案",
-        "problems": ["一个好问题，就已经是答案", "查看年度100问", "进入圆桌参与讨论", "邀请时间做客，一起聊聊改变"],
+        "problems": ["嫦娥四号成功着陆月球背面， 有什么看点和重要意义？", "从 1977 年恢复高考到现在， 上大学发生了哪些变化？", "进入圆桌参与讨论", "邀请时间做客，一起聊聊改变"],
         "button_text": "查看年度100问",
         "jump_url": "#",
         "iconUrl": "//",

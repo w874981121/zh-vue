@@ -31,8 +31,28 @@ export default {
     return {};
   },
   created() {},
-  mounted() {},
-  methods: {}
+  mounted() {
+    this.$nextTick(()=>{
+      this.videoplayer();
+    })
+  },
+  methods: {
+    videoplayer() {
+      console.log("test video");
+      window.zhihuHybrid.dispatch("base/openVideo", {
+        id: "1160348399378870272",
+        cover: "https://pic4.zhimg.com/v2-6c79f6db3d7b9f4ede0b4975ba484ee2.jpg",
+        rect: {
+          bottom: 410,
+          height: 240,
+          left: 12,
+          right: 363,
+          top: 326,
+          width: 320
+        }
+      });
+    }
+  }
 };
 </script>
 <style scoped>

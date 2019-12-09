@@ -10,7 +10,9 @@
         <p>{{yanxuanhall.content_text}}</p>
         <div class="box">
           <div class="img" v-for="(tem,i) in yanxuanhall.list" :key="i">
-            <img :src="tem" alt />
+            <a :href="tem.jump_url">
+              <img :src="tem.img_url" alt />
+            </a>
           </div>
         </div>
       </div>
@@ -60,7 +62,11 @@ export default {
 .box {
   width: 94%;
   margin: auto;
-  height: 2.8rem;
+  margin-top: 0.1rem;
+  display: flex;
+  flex-direction: row ;
+  justify-content:space-between;
+  flex-wrap:wrap;
 }
 
 p {
@@ -82,17 +88,14 @@ p {
   font-size: 0.14rem;
 }
 .img {
-  width: 33.33%;
-  padding: 0.1rem;
+  width: 33%;
   box-sizing: border-box;
-  border: 5px solid #101a73;
-  height: 1.36rem;
-  background: #555555;
-  float: left;
+  padding: 0.06rem;
+  padding-bottom: 0.16rem;
   color: #ffffff;
   font-size: 0.3rem;
 }
-.img img {
-  height: 1.36rem;
+.img a {
+  overflow: hidden;
 }
 </style>
