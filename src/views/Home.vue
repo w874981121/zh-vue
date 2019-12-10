@@ -146,9 +146,11 @@ export default {
   watch: {},
   mounted() {
     this.$nextTick(() => {
+
       setTimeout(() => {
         this.top = this.getElementToPageTop(this.$refs.navtab);
       }, 0);
+
       window.addEventListener("scroll", this.watchScroll);
     });
   },
@@ -313,7 +315,7 @@ export default {
   margin: auto;
 }
 
-.ul {
+.cooperation .ul {
   width: 3.36rem;
   height: auto;
   display: block;
@@ -321,7 +323,7 @@ export default {
   margin: auto;
   margin-left: 0.12rem;
 }
-li {
+.cooperation .ul  li {
   display: block;
   margin-right: 0.24rem;
   width: 0.6rem;
