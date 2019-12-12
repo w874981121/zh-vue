@@ -16,7 +16,17 @@
       <div class="content">
         <p>{{screeninghall.content_text}}</p>
         <div class="video">
-          <video :src="screeninghall.video_url"></video>
+          <div class="video_img" @click="videoplayer" v-if="zhihuState">
+            <img src="https://pic4.zhimg.com/v2-6c79f6db3d7b9f4ede0b4975ba484ee2.jpg" alt />
+          </div>
+          <iframe
+            frameborder="0"
+            scrolling="no"
+            width="314px"
+            height="180px"
+            v-else
+            :src="screeninghall.video_url"
+          ></iframe>
         </div>
         <a class="button" :href="screeninghall.jump_url">{{screeninghall.button_text}}</a>
       </div>
@@ -28,33 +38,37 @@ export default {
   name: "ScreeningHall",
   props: ["screeninghall"],
   data() {
-    return {};
+    return {
+      UA: null,
+      zhihuState: false
+    };
   },
-  created() {},
+  created() {
+    let UA = navigator.userAgent;
+    this.UA = UA;
+    this.zhihuState = UA.indexOf("ZhihuHybrid") > -1;
+  },
   mounted() {
     this.$nextTick(() => {
       // this.videoplayer();
     });
   },
   methods: {
-    init() {
-      
-    },
-    // videoplayer() {
-    //   console.log("test video");
-    //   window.zhihuHybrid.dispatch("base/openVideo", {
-    //     id: "1160348399378870272",
-    //     cover: "https://pic4.zhimg.com/v2-6c79f6db3d7b9f4ede0b4975ba484ee2.jpg",
-    //     rect: {
-    //       bottom: 410,
-    //       height: 240,
-    //       left: 12,
-    //       right: 363,
-    //       top: 326,
-    //       width: 320
-    //     }
-    //   });
-    // }
+    // https://video.zhihu.com/video/1160348399378870272?autoplay=false&useMSE=true
+    videoplayer() {
+      window.zhihuHybrid.dispatch("base/openVideo", {
+        id: "1160348399378870272",
+        cover: "https://pic4.zhimg.com/v2-6c79f6db3d7b9f4ede0b4975ba484ee2.jpg",
+        rect: {
+          bottom: 410,
+          height: 240,
+          left: 12,
+          right: 363,
+          top: 326,
+          width: 320
+        }
+      });
+    }
   }
 };
 </script>

@@ -25,26 +25,28 @@ export default {
     };
   },
   created() {
+    let _this = this;
     document.addEventListener("webkitvisibilitychange", function() {
       var tag = document.hidden || document.webkitHidden;
       if (tag) {
-        this.htmlShowState = false;
+        _this.htmlShowState = false;
       } else {
-        this.htmlShowState = true;
+        _this.htmlShowState = true;
       }
     });
   },
   mounted() {
     this.send = this.$start(this.$refs.barrage_wrap);
-    this.forData();
+    this.setInterval = setInterval(() => {
+      this.forData();
+    }, 2000);
   },
   methods: {
-    // 递归播放
     forData() {
       if (!this.htmlShowState) return;
       var array = this.halloffame.problems; //原始数据
       //   var value = array[Math.round(Math.random() * (array.length - 1))]; //随机抽取一个值
-      var value = array[this.i];   //顺序循环
+      var value = array[this.i]; //顺序循环
       if (this.i === array.length - 1) {
         this.i = 0;
       } else {
@@ -53,14 +55,11 @@ export default {
       this.send({
         imgUrl: value.img_url,
         name: value.name,
-        text: value.text,
+        text: value.desc,
         speed: 1,
         colorname: value.gender === "man" ? "color1" : "color2",
         classname: "halloffamebarrage"
       });
-      setTimeout(() => {
-        this.forData();
-      }, 2000);
     }
   }
 };

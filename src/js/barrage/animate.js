@@ -66,7 +66,6 @@ function animation(target, direction, aim_distance, speed, cb = function() {cons
 		function real(ani, real_dir) {
 			var temp = ani,
 			tempArr;
-
 			function fn() {
 				if (real_dir === "left" || real_dir === "right") {
 					if (target.offsetLeft !== temp()) {

@@ -1,5 +1,11 @@
 <template>
   <div id="home">
+    <Redenvelopes />
+
+    <div class="sharetop" @click="shareClick">
+      <img src="../../public/imgs/fenxiang.png" alt />
+    </div>
+
     <!-- 头部固定 -->
     <div class="banner_bg">
       <img src="../../public/imgs/1.jpg" alt />
@@ -111,9 +117,10 @@ import SelectionHall from "../components/SelectionHall"; //甄选
 import CuriosityPromenade from "../components/CuriosityPromenade"; //好奇心长廊
 import ScreeningHall from "../components/ScreeningHall"; //放映厅
 import YanXuanHall from "../components/YanXuanHall"; //盐选
+import Redenvelopes from "../components/Redenvelopes"; //盐选
+
 
 // 页面配置文件
-import templateData from "../../public/templateJson/index";
 
 export default {
   name: "home",
@@ -122,18 +129,20 @@ export default {
       clickState: true,
       top: null,
       indexSelect: null,
-      templateData: templateData,
+      templateData: null,
       active: null,
       navBarFixed: false
     };
   },
-  created() {},
+  created() {
+    this.templateData = window.homes;
+  },
   computed: {
     templateDataState() {
       return this.templateData && this.templateData.templates;
     },
     navData() {
-      return templateData.templates.filter(item => {
+      return this.templateData.templates.filter(item => {
         return item.tab_state;
       });
     },
@@ -146,19 +155,65 @@ export default {
   watch: {},
   mounted() {
     this.$nextTick(() => {
-
       setTimeout(() => {
         this.top = this.getElementToPageTop(this.$refs.navtab);
       }, 0);
-
       window.addEventListener("scroll", this.watchScroll);
+      window.addEventListener("touchmove", this.watchScroll);
     });
   },
   methods: {
+    shareClick() {
+      // var shareInfo = {
+      //   title: "这是个测试", // 分享到朋友圈与微信好友时的标题
+      //   desc: "这是个测试", // 分享到微信好友的链接详情
+      //   imgUrl: "https://zhstatic.zhihu.com/fly/duanzi/assets/images/share.jpg", // 分享到朋友圈与微信好友时的图片
+      //   link: location.href, // 分享的链接，可能会有增加追踪参数的需求
+      //   success: () => {}
+      // };
+      // window.zWechat.init().then(function() {
+      //   wx.onMenuShareTimeline(shareInfo); // 设置分享到朋友圈信息
+      //   wx.onMenuShareAppMessage(shareInfo);
+      // });
+
+      window.zhihuHybrid.dispatch("share/setShareInfo", {
+        zhihuMessage: {
+          content: "知乎",
+          desc: "知乎"
+        },
+        QQ: {
+          url: "https://www.zhihu.com",
+          title: "知乎",
+          content: "知乎",
+          imageURL: "xxx.png"
+        },
+        zone: {
+          url: "https://www.zhihu.com",
+          title: "知乎",
+          content: "知乎",
+          imageURL: "asdas.png"
+        },
+        weibo: {
+          url: "https://www.zhihu.com",
+          title: "知乎",
+          content: "知乎",
+          imageURL: "asdasd.png"
+        },
+        copyLink: {
+          content: "https://www.zhihu.com"
+        }
+      });
+      window.zhihuHybrid.dispatch("share/showShareActionSheet");
+    },
     templateShowState(name, dyn, state) {
       return name === dyn && state;
     },
     tabNavOnClick(name) {
+      // 埋点
+      window.zap.trackEvent({
+        id: 7364,
+        action: "click"
+      });
       this.clickState = false;
       this.indexSelect = name;
       setTimeout(() => {
@@ -181,6 +236,7 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
+      this.scrollTop = scrollTop;
       if (scrollTop > this.top) {
         this.navBarFixed = true;
       } else {
@@ -196,7 +252,8 @@ export default {
     SelectionHall,
     CuriosityPromenade,
     ScreeningHall,
-    YanXuanHall
+    YanXuanHall,
+    Redenvelopes
   }
 };
 </script>
@@ -249,6 +306,15 @@ export default {
   font-size: 0 !important;
   padding: 0 !important;
   height: 1px;
+}
+
+.sharetop {
+  width: 20px;
+  height: 23px;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  z-index: 99;
 }
 
 .fixed_nav {
@@ -323,7 +389,7 @@ export default {
   margin: auto;
   margin-left: 0.12rem;
 }
-.cooperation .ul  li {
+.cooperation .ul li {
   display: block;
   margin-right: 0.24rem;
   width: 0.6rem;

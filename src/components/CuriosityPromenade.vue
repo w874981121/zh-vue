@@ -24,12 +24,13 @@ export default {
     };
   },
   created() {
+    let _this = this;
     document.addEventListener("webkitvisibilitychange", function() {
       var tag = document.hidden || document.webkitHidden;
       if (tag) {
-        this.htmlShowState = false;
+        _this.htmlShowState = false;
       } else {
-        this.htmlShowState = true;
+        _this.htmlShowState = true;
       }
     });
   },
@@ -50,7 +51,7 @@ export default {
         this.i++;
       }
       this.send({
-        text: value,
+        text: value.text,
         speed: 1,
         classname: "curiositypromenadebarrage"
       });

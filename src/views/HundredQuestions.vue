@@ -26,9 +26,9 @@
         </van-tab>
         <van-tab title="年度精选问题">
           <div class="list_box" v-for="(item,q) in selectedtemplates" :key="q">
-            <div class="title">法律</div>
+            <div class="title">{{item.title}}</div>
             <i class="icon_2">
-              <img src="../../public/imgs/page2-2.png" alt />
+              <img :src="item.icon_url" alt />
             </i>
             <ul class="ul_box2">
               <li v-for="(tem,i) in item.list" :key="i">
@@ -55,12 +55,11 @@
     </div>
     <div class="buttonbox">
       <a href class="button1">前往知乎 2019</a>
-      <a class="button2">分享年度演员</a>
+      <a class="button2">连接更多好奇心</a>
     </div>
   </div>
 </template>
 <script>
-import hundredquestions from "../../public/templateJson/hundredquestions.js";
 export default {
   name: "HundredQuestions",
   data() {
@@ -71,6 +70,7 @@ export default {
     };
   },
   created() {
+    let hundredquestions = window.hundredquestions;
     this.populartemplates = hundredquestions.populartemplates;
     this.selectedtemplates = hundredquestions.selectedtemplates;
     this.brainholetemplates = hundredquestions.brainholetemplates;

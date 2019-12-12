@@ -69,23 +69,24 @@
     </div>
     <div class="buttonbox">
       <a :href="templateData.zhihu_url" class="button1">前往知乎 2019</a>
-      <a class="button2">分享年度演员</a>
+      <a class="button2" @click="shareClick">分享年度演员</a>
     </div>
   </div>
 </template>
 
 <script>
-import templateData from "../../public/templateJson/performer";
 export default {
   name: "Performer",
   data() {
     return {
-      templateData: templateData,
+      templateData: null,
       performer: null,
       review: null
     };
   },
   created() {
+    let templateData = window.performer;
+    this.templateData = templateData;
     if (templateData.state) {
       this.performer = templateData.winawardtemplates;
     } else {
@@ -94,7 +95,38 @@ export default {
     this.review = templateData.reviewtemplates;
   },
   mounted() {},
-  methods: {}
+  methods: {
+    shareClick() {
+      window.zhihuHybrid.dispatch("share/setShareInfo", {
+        zhihuMessage: {
+          content: "知乎",
+          desc: "知乎"
+        },
+        QQ: {
+          url: "https://www.zhihu.com",
+          title: "知乎",
+          content: "知乎",
+          imageURL: "xxx.png"
+        },
+        zone: {
+          url: "https://www.zhihu.com",
+          title: "知乎",
+          content: "知乎",
+          imageURL: "asdas.png"
+        },
+        weibo: {
+          url: "https://www.zhihu.com",
+          title: "知乎",
+          content: "知乎",
+          imageURL: "asdasd.png"
+        },
+        copyLink: {
+          content: "https://www.zhihu.com"
+        }
+      });
+      window.zhihuHybrid.dispatch("share/showShareActionSheet");
+    }
+  }
 };
 </script>
 <style scoped>
